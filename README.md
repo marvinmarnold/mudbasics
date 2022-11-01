@@ -8,14 +8,9 @@ Eru is a music layer to enable devs to create tools, and help melomaniacs and fa
 
 ### Entities
 
-|  Entity |  Components |
-|---      |:---:|
-| Sound   | • SoundUriComponent (link to binary)
-            • EruMetadataComponent (name and authors) |
-| Track   | • TrackConfigComponent (when and what to play)
-            • EruMetadataComponent (name and authors)  |
-| Sample  | • SampleTracksComponent (list of Tracks)
-            • EruMetadataComponent (name and authors)  |
+- Sound
+- Track
+- Sample
 
 #### Component Details
 
@@ -38,7 +33,6 @@ Eru is a music layer to enable devs to create tools, and help melomaniacs and fa
     - soundEntity.SoundUriComponent = uri
     - entity.EruMetadataComponent = eruMetadata
 - struct Tracks
-    - 
 - setSampleEntitySystem(soundEntity,
 - **setSampleEntity**(sampleEntityId, tracks
 - **SetSoundForTrack**(trackEntity, soundEntity)
