@@ -4,7 +4,9 @@
     "CarriedByComponent",
     "SoundUriComponent",
     "NameComponent",
-    "AuthorsComponent"
+    "AuthorsComponent",
+    "TrackSoundEntityComponent",
+    "TrackTimingsComponent"
   ],
   "systems": [
     { "name": "ComponentDevSystem", "writeAccess": ["*"] },
@@ -12,6 +14,7 @@
     { "name": "CatchSystem", "writeAccess": ["PositionComponent", "CarriedByComponent"] },
     { "name": "UploadSoundSystem", "writeAccess": ["SoundUriComponent"] },
     { "name": "SetAuthorsSystem", "writeAccess": ["AuthorsComponent"] },
-    { "name": "SetNameSystem", "writeAccess": ["NameComponent"] }
+    { "name": "SetNameSystem", "writeAccess": ["NameComponent"] },
+    { "name": "SetTrackSoundEntity", "writeAccess": ["TrackSoundEntityComponent"] }
   ]
 }

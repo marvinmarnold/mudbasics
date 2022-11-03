@@ -7,29 +7,16 @@ export function createUploadSoundSystem(network: NetworkLayer, context) {
   } = context;
 
   const {
-    components: { SoundUri },
+    components: { SoundUri, TrackSoundEntity },
   } = network;
 
   defineComponentSystem(world, SoundUri, (update) => {
-    const soundUri = update.value[0];
-    // TODO: Set flag to delete a sound
+    console.log('defineComponentSystem: SoundUri');
+    console.log(update);
+  });
 
-    // if (!position) {
-    //   objectPool.remove(update.entity);
-    //   // Position got removed
-    //   return;
-    // }
-
-    // const object = objectPool.get(update.entity, "Sprite");
-    // const { x, y } = tileCoordToPixelCoord(position, tileWidth, tileHeight);
-    // const sprite = config.sprites[Sprites.Donkey];
-
-    // object.setComponent({
-    //   id: Position.id,
-    //   once: (gameObject) => {
-    //     gameObject.setTexture(sprite.assetKey, sprite.frame);
-    //     gameObject.setPosition(x, y);
-    //   },
-    // });
+  defineComponentSystem(world, TrackSoundEntity, (update) => {
+    console.log('defineComponentSystem: TrackSoundEntity');
+    console.log(update);
   });
 }

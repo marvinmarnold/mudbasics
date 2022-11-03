@@ -31,6 +31,7 @@ export async function createNetworkLayer(config: GameConfig) {
     Name: defineStringComponent(world, { id: "Name", metadata: { contractId: "component.Name" } }),
     Authors: defineStringComponent(world, { id: "Authors", metadata: { contractId: "component.Authors" } }),
     SoundUri: defineStringComponent(world, { id: "SoundUri", metadata: { contractId: "component.SoundUri" } }),
+    TrackSoundEntity: defineStringComponent(world, { id: "TrackSoundEntity", metadata: { contractId: "component.TrackSoundEntity" } }),
   };
 
   // --- SETUP ----------------------------------------------------------------------
@@ -55,12 +56,16 @@ export async function createNetworkLayer(config: GameConfig) {
     systems["system.UploadSound"].executeTyped(BigNumber.from(entityId), soundUri);
   }
 
-  function setName(name: string) {
-    systems["system.SetName"].executeTyped(BigNumber.from(network.connectedAddress.get()), name);
+  function setName(entityId: string, name: string) {
+    systems["system.SetName"].executeTyped(BigNumber.from(entityId), name);
   }
 
-  function setAuthors(authors: string) {
-    systems["system.SetAuthors"].executeTyped(BigNumber.from(network.connectedAddress.get()), authors);
+  function setAuthors(entityId: string, authors: string) {
+    systems["system.SetAuthors"].executeTyped(BigNumber.from(entityId), authors);
+  }
+
+  function setTrackSoundEntity(entityId: string, authors: string) {
+    systems["system.SetTrackSoundEntity"].executeTyped(BigNumber.from(entityId), authors);
   }
 
   // --- CONTEXT --------------------------------------------------------------------
@@ -73,7 +78,7 @@ export async function createNetworkLayer(config: GameConfig) {
     startSync,
     network,
     actions,
-    api: { move, pickup, uploadSound, setName, setAuthors },
+    api: { move, pickup, uploadSound, setName, setAuthors, setTrackSoundEntity },
     dev: setupDevSystems(world, encoders, systems),
   };
 
