@@ -8,21 +8,7 @@ import {utils} from "ethers";
 import crypto from "crypto";
 
 export const DesktopWindow: React.FC = observer(({layers}) => {
-  const { account } = useAccount();
-  const disconnect = useDisconnect()
-
-  const shortenAddress = (address) => {
-    return `${address.slice(0, 4)}...${address.slice(
-      address.length - 4,
-      address.length
-    )}`;
-  }
-
-  const NFT_API_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDdlNjM4Q0YwNzJBYjBDNzBCODJkZjFlMTRiNjMwRjQxRWY1M0IwMDQiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTY2NzA3MTkyNTk5OSwibmFtZSI6IkV0aExpc2JvbiJ9.3ZOyJgNKgrP_NdRYbFr-9W6dHCe7EqhR72kiKq7497Q';
-  const client = new NFTStorage({ token: NFT_API_TOKEN })
-
-  // Construct with token and endpoint
-  console.log("🚀 ~ process?.WEB3_API_TOKEN", process?.env.NFT_API_TOKEN)
+  const client = new NFTStorage({ token: process.env.NFT_API_TOKEN })
   
   const DropZone = () => {
     const onDrop = useCallback(async acceptedFiles => {

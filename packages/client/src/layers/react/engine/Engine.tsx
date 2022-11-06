@@ -1,7 +1,7 @@
 import React from "react";
 import { LayerContext, EngineContext } from "./context";
 import { EngineStore } from "./store";
-import { BootScreen, MainWindow, DesktopWindow, ComponentRenderer } from "./components";
+import { BootScreen, MobileWindow, DesktopWindow, ComponentRenderer } from "./components";
 import { observer } from "mobx-react-lite";
 import { useEffect } from "react";
 import { useState } from "react";
@@ -36,7 +36,7 @@ export const Engine: React.FC<{
             
             <MobileView>
               <ChakraProvider>
-                <MainWindow layers={layers} />
+                <MobileWindow layers={layers} />
               </ChakraProvider>
             </MobileView>
 

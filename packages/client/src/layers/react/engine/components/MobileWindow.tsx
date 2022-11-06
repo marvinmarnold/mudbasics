@@ -9,6 +9,8 @@ import * as Tone from 'tone'
 import { Midi } from '@tonejs/midi'
 import { NFTStorage } from 'nft.storage/dist/bundle.esm.min.js'
 
+import {ListIcon} from '../../components/Icons';
+
 const shortenAddress = (address) => {
   return `${address.slice(0, 4)}...${address.slice(
     address.length - 4,
@@ -31,7 +33,7 @@ const feedbackDelay = new Tone.FeedbackDelay(0.125, 0.5).toDestination();
 player.connect(filter);
 player.connect(feedbackDelay);
 
-export const MainWindow: React.FC = observer(({ layers }) => {
+export const MobileWindow: React.FC = observer(({ layers }) => {
   // Hooks
   const [mainPressed, setmainPressed] = useState(false)
   const [padPressed, setpadPressed] = useState(false)
@@ -72,7 +74,7 @@ export const MainWindow: React.FC = observer(({ layers }) => {
       const instrumentStatus = await client.status(entitieObjects[0])
       console.log("🚀 ~instrumentStatus", instrumentStatus)
       const jsonMidi = await midiToJson(instrumentStatus.metadata)
-      console.log("🚀 ~ file: MainWindow.tsx ~ line 79 ~ fetchData ~ jsonMidi", jsonMidi)
+      console.log("🚀 ~ file: MobileWindow.tsx ~ line 79 ~ fetchData ~ jsonMidi", jsonMidi)
 
     }
 
@@ -173,9 +175,12 @@ export const MainWindow: React.FC = observer(({ layers }) => {
   return (
     <div className={styles.wrapper}>
       <div className="flex fullscreen" style={{ flexDirection: 'column' }}>
+          <div style={{ height: "10vh" }}>
+            <ListIcon />
+            </div>
 
         <div className={styles.topWrapper}>
-          <div style={{ height: "45vh" }}>
+          <div style={{ height: "35vh" }}>
             <ArrowLeftIcon color="white" className={styles.arrowLeft} />
             <div className={styles.circle}>
               <CircularProgress value={100} size='80vw' thickness='2px' color='#C527DF' trackColor='#C527DF' />

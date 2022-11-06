@@ -1,5 +1,5 @@
 export { Cell } from "./Cell";
 export { ComponentRenderer } from "./ComponentRenderer";
-export { MainWindow } from "./MainWindow";
+export { MobileWindow } from "./MobileWindow";
 export { DesktopWindow } from "./DesktopWindow";
 export { BootScreen } from "./BootScreen";
