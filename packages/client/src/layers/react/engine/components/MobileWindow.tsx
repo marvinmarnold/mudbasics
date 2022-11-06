@@ -3,7 +3,7 @@ import { observer } from "mobx-react-lite";
 import { useDrag } from '@use-gesture/react'
 import { a, useSpring } from '@react-spring/web'
 import styles from './styles.module.css'
-import { Box, Text, CircularProgress, CircularProgressLabel, CloseButton } from '@chakra-ui/react'
+import { CircularProgress, CircularProgressLabel, CloseButton } from '@chakra-ui/react'
 import { ArrowLeftIcon, ArrowRightIcon, PlusSquareIcon } from '@chakra-ui/icons'
 import * as Tone from 'tone'
 import { Midi } from '@tonejs/midi'
@@ -11,15 +11,7 @@ import { NFTStorage } from 'nft.storage/dist/bundle.esm.min.js'
 
 import {ListIcon} from '../../components/Icons';
 
-const shortenAddress = (address) => {
-  return `${address.slice(0, 4)}...${address.slice(
-    address.length - 4,
-    address.length
-  )}`;
-}
-
-const NFT_API_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDdlNjM4Q0YwNzJBYjBDNzBCODJkZjFlMTRiNjMwRjQxRWY1M0IwMDQiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTY2NzA3MTkyNTk5OSwibmFtZSI6IkV0aExpc2JvbiJ9.3ZOyJgNKgrP_NdRYbFr-9W6dHCe7EqhR72kiKq7497Q';
-const client = new NFTStorage({ token: NFT_API_TOKEN })
+const client = new NFTStorage({ token: process.env.NFT_API_TOKEN })
 
 
 const player = new Tone.Player({
