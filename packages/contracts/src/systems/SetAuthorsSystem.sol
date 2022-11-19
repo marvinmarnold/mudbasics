@@ -14,8 +14,8 @@ contract SetAuthorsSystem is System {
   function execute(bytes memory arguments) public returns (bytes memory) {
     (uint256 entity, string memory desiredAuthors) = abi.decode(arguments, (uint256, string));
 
-    AuthorsComponent AuthorsComponent = AuthorsComponent(getAddressById(components, AuthorsComponentID));
-    AuthorsComponent.set(entity, desiredAuthors);
+    AuthorsComponent authorsComponent = AuthorsComponent(getAddressById(components, AuthorsComponentID));
+    authorsComponent.set(entity, desiredAuthors);
   }
 
   function executeTyped(uint256 entity, string memory desiredAuthors) public returns (bytes memory) {
