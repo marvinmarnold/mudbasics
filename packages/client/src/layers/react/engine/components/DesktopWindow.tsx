@@ -1,10 +1,11 @@
 import React, {useCallback} from 'react'
 import { observer } from "mobx-react-lite";
-import styles from './stylesDesktop.module.css'
 import {useDropzone} from 'react-dropzone'
 import { NFTStorage } from 'nft.storage/dist/bundle.esm.min.js'
 import {utils} from "ethers";
 import crypto from "crypto";
+
+import styles from './stylesDesktop.module.css'
 
 export const DesktopWindow: React.FC = observer(({layers}) => {
   const client = new NFTStorage({ token: process.env.NFT_API_TOKEN })

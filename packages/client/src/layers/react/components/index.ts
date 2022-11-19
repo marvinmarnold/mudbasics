@@ -1,11 +1,11 @@
-import { registerComponentBrowser } from "./ComponentBrowser";
+// import { registerComponentBrowser } from "./ComponentBrowser";
 import { registerActionQueue } from "./ActionQueue";
 import { registerLoadingState } from "./LoadingState";
 import { registerInventory } from "./Inventory";
 
 export function registerUIComponents() {
   registerLoadingState();
-  registerComponentBrowser();
+  // registerComponentBrowser();
   registerActionQueue();
   registerInventory();
 }

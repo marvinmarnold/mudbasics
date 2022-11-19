@@ -3,13 +3,14 @@ import { observer } from "mobx-react-lite";
 import { useDrag } from '@use-gesture/react'
 import { a, useSpring } from '@react-spring/web'
 import styles from './styles.module.css'
+import { defineQuery, HasValue, getComponentValue, getComponentEntities } from "@latticexyz/recs";
 import { CircularProgress, CircularProgressLabel, CloseButton } from '@chakra-ui/react'
-import { ArrowLeftIcon, ArrowRightIcon, PlusSquareIcon } from '@chakra-ui/icons'
+import { ArrowLeftIcon, ArrowRightIcon } from '@chakra-ui/icons'
 import * as Tone from 'tone'
 import { Midi } from '@tonejs/midi'
 import { NFTStorage } from 'nft.storage/dist/bundle.esm.min.js'
 
-import {ListIcon} from '../../components/Icons';
+import {ListIcon, PlayIcon, PadIcon} from '../../components/Icons';
 
 const client = new NFTStorage({ token: process.env.NFT_API_TOKEN })
 
@@ -54,19 +55,31 @@ export const MobileWindow: React.FC = observer(({ layers }) => {
         '0xa62AE22c61A4AD04f61c9dD3359a754c393c8Ab2'
       ];
 
-      const entitieObjects = entitiedId.map((ent): string => layers.network.world.components[ent].update$.subscribe(({ entity, value }) => {
-        console.log('This updates')
-        console.log(entity)
-        console.log(value)
-        return {
-          entity,
-          value
-        }
-      }));
-      const instrumentStatus = await client.status(entitieObjects[0])
-      console.log("🚀 ~instrumentStatus", instrumentStatus)
-      const jsonMidi = await midiToJson(instrumentStatus.metadata)
-      console.log("🚀 ~ file: MobileWindow.tsx ~ line 79 ~ fetchData ~ jsonMidi", jsonMidi)
+      // const entitieObjects = entitiedId.map((ent): string => layers.network.world.components[ent].update$.subscribe(({ entity, value }) => {
+      //   console.log('This updates')
+      //   console.log(entity)
+      //   console.log(value)
+      //   return {
+      //     entity,
+      //     value
+      //   }
+      // }));
+      // console.log("🚀 ~ file: MobileWindow.tsx ~ line 66 ~ entitieObjects ~ entitieObjects", entitieObjects)
+      // const instrumentStatus = await client.status(entitieObjects[0])
+      // console.log("🚀 ~instrumentStatus", instrumentStatus)
+      // const jsonMidi = await midiToJson(instrumentStatus.metadata)
+      // console.log("🚀 ~ file: MobileWindow.tsx ~ line 79 ~ fetchData ~ jsonMidi", jsonMidi)
+
+
+      // =====================================
+      // const query = defineQuery([HasValue(CarriedBy, { value: connectedAddress.get() })]);
+      // return query.update$.pipe(map(() => ({ matching: query.matching, world })));
+
+
+      // =====================================
+      const currentSound = getComponentEntities(SoundUri);
+      // const currentSound = getComponentValue(SoundUri, entitiedId[0]);
+      console.log("🚀 currentSound:", currentSound)
 
     }
 
@@ -110,7 +123,7 @@ export const MobileWindow: React.FC = observer(({ layers }) => {
             Soundtrack
           </p>
           <div>
-            <ArrowRightIcon color="white" w={5} h={5} className={styles.playstop} />
+            <PlayIcon color="white" className={styles.playstop}/>
           </div>
         </div>
       </CircularProgressLabel>
@@ -159,7 +172,7 @@ export const MobileWindow: React.FC = observer(({ layers }) => {
   const PadButton = () => {
     return (
       <div>
-        <PlusSquareIcon onClick={() => setpadPressed(e => !e)} color={padPressed ? '#3DF69D' : '#7B7B7B'} className={styles.padButton} />
+        <PadIcon onClick={() => setpadPressed(e => !e)} color={padPressed ? '#3DF69D' : '#7B7B7B'} className={styles.padButton} />
       </div>
     )
   }
@@ -167,7 +180,7 @@ export const MobileWindow: React.FC = observer(({ layers }) => {
   return (
     <div className={styles.wrapper}>
       <div className="flex fullscreen" style={{ flexDirection: 'column' }}>
-          <div style={{ height: "10vh" }}>
+          <div style={{ height: "10vh", padding: "10px" }}>
             <ListIcon />
             </div>
 

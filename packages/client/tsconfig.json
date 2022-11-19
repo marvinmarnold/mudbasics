@@ -23,11 +23,22 @@
     // "noLib": true,                                    /* Disable including any library files, including the default lib.d.ts. */
     "useDefineForClassFields": true /* Emit ECMAScript-standard-compliant class fields. */,
     /* Modules */
-    "module": "esnext" /* Specify what module code is generated. */,
+    /* Specify what module code is generated. */
+    "module": "esnext",
     // "rootDir": "./",                                  /* Specify the root folder within your source files. */
     "moduleResolution": "node" /* Specify how TypeScript looks up a file from a given module specifier. */,
-    // "baseUrl": "./" /* Specify the base directory to resolve non-relative module names. */,
-    // "paths": {},                                      /* Specify a set of entries that re-map imports to additional lookup locations. */
+    /* Specify the base directory to resolve non-relative module names. */
+    "baseUrl": "./",
+    /* Specify a set of entries that re-map imports to additional lookup locations. */
+    "paths": {
+      "@components*": ["src/layers/react/components*"],
+      // "@abis*": ["src/abis*"],
+      // "@utils*": ["src/utils*"],
+      "@lib*": ["src/lib*"],
+      // "@gql*": ["src/graphql*"],
+      "@generated*": ["src/generated*"],
+      "@store*": ["src/store*"]
+    },
     // "rootDirs": [],                                   /* Allow multiple folders to be treated as one when resolving modules. */
     // "typeRoots": [] /* Specify multiple folders that act like `./node_modules/@types`. */,
     "types": [

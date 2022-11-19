@@ -3,7 +3,7 @@ import { NetworkLayer } from "../network";
 import { createPositionSystem, createInputSystem, createUploadSoundSystem } from "./systems";
 
 /**
- * The Phaser layer is responsible for rendering game objects to the screen.
+ * The React layer is responsible for rendering the UI.
  */
 export async function createReactLayer(network: NetworkLayer) {
   // --- WORLD ----------------------------------------------------------------------

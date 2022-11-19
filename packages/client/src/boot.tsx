@@ -65,8 +65,7 @@ async function bootGame() {
     if (!networkLayerConfig) throw new Error("Invalid config");
 
     if (!layers.network) layers.network = await createNetworkLayer(networkLayerConfig);
-    // if (!layers.phaser) layers.phaser = await createPhaserLayer(layers.network);
-    if (!layers.phaser) layers.phaser = await createReactLayer(layers.network);
+    if (!layers.react) layers.react = await createReactLayer(layers.network);
 
     // Sync global time with phaser clock
     // Time.time.setPacemaker((setTimestamp) => {
@@ -74,14 +73,6 @@ async function bootGame() {
     //     setTimestamp(time);
     //   });
     // });
-
-    // Make sure there is only one canvas.
-    // Ideally HMR should handle this, but in some cases it fails.
-    // If there are two canvas elements, do a full reload.
-    if (document.querySelectorAll("#phaser-game canvas").length > 1) {
-      console.log("Detected two canvas elements, full reload");
-      import.meta.hot?.invalidate();
-    }
 
     // Start syncing once all systems have booted
     if (initialBoot) {
