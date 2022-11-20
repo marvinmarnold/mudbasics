@@ -4,20 +4,20 @@
 // import type { LensterAttachment } from '@generated/lenstertypes';
 // import { Menu, Transition } from '@headlessui/react';
 import { MusicNoteIcon } from '@heroicons/react/outline';
-import { Leafwatch } from '@lib/leafwatch';
-import uploadToIPFS from '@lib/uploadToIPFS';
 import clsx from 'clsx';
 import type { ChangeEvent, Dispatch, FC } from 'react';
 import { Fragment, useId, useRef, useState } from 'react';
 import toast from 'react-hot-toast';
+// import { PUBLICATION } from 'src/tracking';
+
+import { Leafwatch } from '../../../lib/leafwatch';
+import uploadToIPFS from '../../../lib/uploadToIPFS';
 import {
   ALLOWED_AUDIO_TYPES,
   ALLOWED_IMAGE_TYPES,
   ALLOWED_MEDIA_TYPES,
   ALLOWED_VIDEO_TYPES
 } from 'src/constants';
-// import { PUBLICATION } from 'src/tracking';
-
 interface Props {
   attachments: unknown; // LensterAttachment[];
   setAttachments: unknown; // Dispatch<LensterAttachment[]>;

@@ -1,4 +1,4 @@
-import getEnvConfig from '@lib/getEnvConfig';
+import getEnvConfig from './lib/getEnvConfig';
 import packageJson from '../package.json';
 
 // Environments

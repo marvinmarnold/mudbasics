@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
-import uploadToArweave from '@lib/uploadToArweave';
-import getTags from '@lib/getTags';
-import trimify from '@lib/trimify';
 import { v4 as uuid } from 'uuid';
-import getUserLocale from '@lib/getUserLocale';
+
+
+import uploadToArweave from './uploadToArweave';
+import getTags from './getTags';
+import trimify from './trimify';
+import getUserLocale from './getUserLocale';
 
 import {APP_NAME, ALLOWED_AUDIO_TYPES} from '../constants'
 

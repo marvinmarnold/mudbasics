@@ -2,18 +2,18 @@ import React, { useState, useEffect } from "react";
 import { observer } from "mobx-react-lite";
 import { useDrag } from '@use-gesture/react'
 import { a, useSpring } from '@react-spring/web'
-import styles from './styles.module.css'
-import { defineQuery, HasValue, getComponentValue, getComponentEntities } from "@latticexyz/recs";
+import { defineQuery, HasValue, getComponentValue, getComponentEntities, getComponentValueStrict } from "@latticexyz/recs";
 import { CircularProgress, CircularProgressLabel, CloseButton } from '@chakra-ui/react'
 import { ArrowLeftIcon, ArrowRightIcon } from '@chakra-ui/icons'
 import * as Tone from 'tone'
 import { Midi } from '@tonejs/midi'
-import { NFTStorage } from 'nft.storage/dist/bundle.esm.min.js'
+import { map } from "rxjs";
 
+import styles from './styles.module.css'
+import { sounds } from '../constants'
 import {ListIcon, PlayIcon, PadIcon} from '../../components/Icons';
 
-const client = new NFTStorage({ token: process.env.NFT_API_TOKEN })
-
+const baseUrl = ""
 
 const player = new Tone.Player({
   url: "https://tonejs.github.io/audio/drum-samples/loops/ominous.mp3",
@@ -48,38 +48,41 @@ export const MobileWindow: React.FC = observer(({ layers }) => {
   useEffect(() => {
     // declare the data fetching function
     const fetchData = async () => {
-      const entitiedId = [
-        '0x96659B31A39b418c3AAf6E3D9E8440c0707a0B28',
-        '0xDA66b5A426372642B317c9D6C61604B04Aa1E61a',
-        '0x2916a669d75A2b949D1eC635396dFD4922d43Fb5',
-        '0xa62AE22c61A4AD04f61c9dD3359a754c393c8Ab2'
-      ];
 
-      // const entitieObjects = entitiedId.map((ent): string => layers.network.world.components[ent].update$.subscribe(({ entity, value }) => {
-      //   console.log('This updates')
-      //   console.log(entity)
-      //   console.log(value)
-      //   return {
-      //     entity,
-      //     value
-      //   }
-      // }));
-      // console.log("🚀 ~ file: MobileWindow.tsx ~ line 66 ~ entitieObjects ~ entitieObjects", entitieObjects)
-      // const instrumentStatus = await client.status(entitieObjects[0])
-      // console.log("🚀 ~instrumentStatus", instrumentStatus)
-      // const jsonMidi = await midiToJson(instrumentStatus.metadata)
+      // =====================================
+      // return query.update$.pipe(map(() => ({ matching: query.matching, world })));
+      
+      // This way we can "hear" changes related to a component (?)
+      // const componentId = '0x7777b33884e1d056a8ca979833d686abd267f9f8';
+      // const query = defineQuery([HasValue(SoundUri, { value: componentId })]);
+      // console.log("🚀 =======>>>>>", SoundUri.update$.pipe(map(() => ({ matching: query.matching, world }))))
+      // // console.log("🚀 =======>>>>>", query.update$.pipe(map(() => ({ matching: query.matching, world }))))
+
+      try {
+        const entityId = sounds[0].entityId
+        const entityIndex = SoundUri.world.entityToIndex.get(entityId);
+        console.log("🚀 =======>>>>>", entityIndex);
+        const soundData = getComponentValueStrict(SoundUri, entityIndex);
+        console.log("🚀 ~ file: MobileWindow.tsx ~ line 88 ~ fetchData ~ soundData", soundData.value)
+        
+
       // console.log("🚀 ~ file: MobileWindow.tsx ~ line 79 ~ fetchData ~ jsonMidi", jsonMidi)
 
+        // =====================================
+      // const componentEntities = getComponentEntities(SoundUri);
+      // console.log("🚀 ~ file: MobileWindow.tsx ~ line 88 ~ fetchData ~ componentEntities", componentEntities)
+      // const currentSound = getComponentValue(SoundUri, '0x7777b33884e1d056a8ca979833d686abd267f9f8');
+      // console.log("🚀 currentSound:", currentSound)
 
-      // =====================================
-      // const query = defineQuery([HasValue(CarriedBy, { value: connectedAddress.get() })]);
-      // return query.update$.pipe(map(() => ({ matching: query.matching, world })));
 
+      // const eee = [...getComponentEntities(SoundUri)].map((e) => {
+      //   const soundData = getComponentValueStrict(SoundUri, e);
+      //   console.log('soundData', e, '-', soundData)
+      // })
 
-      // =====================================
-      const currentSound = getComponentEntities(SoundUri);
-      // const currentSound = getComponentValue(SoundUri, entitiedId[0]);
-      console.log("🚀 currentSound:", currentSound)
+      } catch {
+        console.error('MobileWindow Errorrr:"')
+      }
 
     }
 
@@ -180,7 +183,7 @@ export const MobileWindow: React.FC = observer(({ layers }) => {
   return (
     <div className={styles.wrapper}>
       <div className="flex fullscreen" style={{ flexDirection: 'column' }}>
-          <div style={{ height: "10vh", padding: "10px" }}>
+          <div style={{ height: "10vh", padding: "10px 20px", textAlign: "end" }}>
             <ListIcon />
             </div>
 

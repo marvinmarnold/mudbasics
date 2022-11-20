@@ -26,8 +26,8 @@ export async function createNetworkLayer(config: GameConfig) {
   // --- COMPONENTS -----------------------------------------------------------------
   const components = {
     LoadingState: defineLoadingStateComponent(world),
-    Position: defineCoordComponent(world, { id: "Position", metadata: { contractId: "component.Position" } }),
-    CarriedBy: defineStringComponent(world, { id: "CarriedBy", metadata: { contractId: "component.CarriedBy" } }),
+    // Position: defineCoordComponent(world, { id: "Position", metadata: { contractId: "component.Position" } }),
+    // CarriedBy: defineStringComponent(world, { id: "CarriedBy", metadata: { contractId: "component.CarriedBy" } }),
     Name: defineStringComponent(world, { id: "Name", metadata: { contractId: "component.Name" } }),
     Authors: defineStringComponent(world, { id: "Authors", metadata: { contractId: "component.Authors" } }),
     SoundUri: defineStringComponent(world, { id: "SoundUri", metadata: { contractId: "component.SoundUri" } }),
