@@ -4,20 +4,21 @@
 // import type { LensterAttachment } from '@generated/lenstertypes';
 // import { Menu, Transition } from '@headlessui/react';
 import { MusicNoteIcon } from '@heroicons/react/outline';
-import { Leafwatch } from '@lib/leafwatch';
-import uploadToIPFS from '@lib/uploadToIPFS';
-import clsx from 'clsx';
 import type { ChangeEvent, Dispatch, FC } from 'react';
-import { Fragment, useId, useRef, useState } from 'react';
-import toast from 'react-hot-toast';
+import { useRef, useState } from 'react';
+import { useToast } from '@chakra-ui/react'
+import { v4 as uuid } from 'uuid';
+
+// import { PUBLICATION } from 'src/tracking';
+
+// import { Leafwatch } from '../../../lib/leafwatch';
+import uploadToIPFS from '../../../lib/uploadToIPFS';
 import {
   ALLOWED_AUDIO_TYPES,
   ALLOWED_IMAGE_TYPES,
   ALLOWED_MEDIA_TYPES,
   ALLOWED_VIDEO_TYPES
-} from 'src/constants';
-// import { PUBLICATION } from 'src/tracking';
-
+} from '../../../constants';
 interface Props {
   attachments: unknown; // LensterAttachment[];
   setAttachments: unknown; // Dispatch<LensterAttachment[]>;
@@ -26,8 +27,9 @@ interface Props {
 const Attachment: FC<Props> = ({ attachments, setAttachments }) => {
   const [loading, setLoading] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
-  const id = useId();
+  const id = uuid();
   const dropdownRef = useRef(null);
+  const toast = useToast()
 
   // useOnClickOutside(dropdownRef, () => setShowMenu(false));
 
@@ -72,7 +74,14 @@ const Attachment: FC<Props> = ({ attachments, setAttachments }) => {
     try {
       // Count check
       if (evt.target.files && (hasVideos(evt.target.files) || evt.target.files.length > 4)) {
-        return toast.error('Please choose either 1 video or up to 4 photos.');
+        toast({
+          title: 'Error',
+          description: "WPlease choose either 1 video or up to 4 photos.",
+          status: 'error',
+          duration: 9000,
+          isClosable: true,
+        })
+        return
       }
 
       // Type check
@@ -83,7 +92,14 @@ const Attachment: FC<Props> = ({ attachments, setAttachments }) => {
           evt.target.value = '';
         }
       } else {
-        return toast.error('File format not allowed.');
+        toast({
+          title: 'Error',
+          description: "File format not allowed.",
+          status: 'error',
+          duration: 9000,
+          isClosable: true,
+        })
+        return
       }
     } finally {
       setLoading(false);

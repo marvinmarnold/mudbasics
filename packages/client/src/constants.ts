@@ -1,4 +1,4 @@
-import getEnvConfig from '@lib/getEnvConfig';
+import getEnvConfig from './lib/getEnvConfig';
 import packageJson from '../package.json';
 
 // Environments
@@ -23,10 +23,10 @@ export const Directions = {
 export const LENS_NETWORK = process.env.NEXT_PUBLIC_LENS_NETWORK ?? 'mainnet';
 
 export const API_URL = getEnvConfig().apiEndpoint;
-export const LENSHUB_PROXY = getEnvConfig().lensHubProxyAddress;
-export const LENS_PERIPHERY = getEnvConfig().lensPeripheryAddress;
-export const FREE_COLLECT_MODULE = getEnvConfig().freeCollectModuleAddress;
-export const DEFAULT_COLLECT_TOKEN = getEnvConfig().defaultCollectToken;
+// export const LENSHUB_PROXY = getEnvConfig().lensHubProxyAddress;
+// export const LENS_PERIPHERY = getEnvConfig().lensPeripheryAddress;
+// export const FREE_COLLECT_MODULE = getEnvConfig().freeCollectModuleAddress;
+// export const DEFAULT_COLLECT_TOKEN = getEnvConfig().defaultCollectToken;
 
 export const IS_MAINNET = API_URL === MAINNET_API_URL;
 
