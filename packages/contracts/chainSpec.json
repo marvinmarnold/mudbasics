@@ -1,5 +1,7 @@
 {
   "chainId": 31337,
-  "rpc": "http://localhost:8545",
-  "wsRpc": "ws://localhost:8545"
+  "chainBlockTime": 1,
+  "chainGasLimit": 100000000,
+  "rpc": "https://alpha-1-replica-0.bedrock-goerli.optimism.io",
+  "wsRpc": "ws://alpha-1-replica-0.bedrock-goerli.optimism.io"
 }

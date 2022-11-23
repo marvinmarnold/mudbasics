@@ -1,5 +1,5 @@
 import { AssumeRoleCommand, STSClient } from '@aws-sdk/client-sts';
-import { ERROR_MESSAGE, EVER_API } from 'src/constants';
+import { ERROR_MESSAGE, EVER_API } from '../../src/constants';
 
 interface Data {
   accessKeyId?: string;
@@ -14,11 +14,7 @@ const accessKeyId = process.env.EVER_ACCESS_KEY as string;
 const secretAccessKey = process.env.EVER_ACCESS_SECRET as string;
 const bucketName = process.env.NEXT_PUBLIC_EVER_BUCKET_NAME as string;
 
-const handler = async (req, res) => {
-  if (req.method !== 'GET') {
-    return res.status(405).json({ success: false, message: 'Invalid method!' });
-  }
-
+exports.handler = async (event, context) => {
   try {
     const stsClient = new STSClient({
       endpoint: EVER_API,
@@ -52,15 +48,19 @@ const handler = async (req, res) => {
       })
     );
 
-    return res.status(200).json({
+    const response = {
       success: true,
       accessKeyId: data.Credentials?.AccessKeyId,
       secretAccessKey: data.Credentials?.SecretAccessKey,
       sessionToken: data.Credentials?.SessionToken
-    });
-  } catch {
-    return res.status(500).json({ success: false, message: ERROR_MESSAGE });
+    }
+
+    return { statusCode: 200, body: JSON.stringify(response) };
+  } catch (error) {
+    console.log(error);
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: ERROR_MESSAGE }),
+    };
   }
 };
-
-export default handler;

@@ -3,22 +3,23 @@ import { observer } from "mobx-react-lite";
 import {useDropzone} from 'react-dropzone'
 import {utils} from "ethers";
 import crypto from "crypto";
-
+import { Box } from '@chakra-ui/react'
 
 import {uploadFiles} from '../../../../lib/uploadFiles';
+import Attachment from '../../components/Attachment'
 import styles from './stylesDesktop.module.css'
 
 export const DesktopWindow: React.FC = observer(({layers}) => {
+  const [attachments, setAttachments] = useState([]);
+  const [isUploading, setIsUploading] = useState(false)
   
   const DropZone = () => {
-    const [isUploading, setIsUploading] = useState(false)
-
     const onDrop = useCallback(async acceptedFiles => {
       // TODO: 
       const publicationContent = {
         audio: acceptedFiles[0]
       }
-      const uploadResponse = await uploadFiles(publicationContent);
+      const uploadResponse = await uploadFiles(attachments, publicationContent, setIsUploading);
       // const metadata = await client.store({
       //   name: 'Beat',
       //   description: 'Metadata!',
@@ -48,16 +49,17 @@ export const DesktopWindow: React.FC = observer(({layers}) => {
   )
 }
 
-return (
-    <div className={styles.desktop}>  
-        <div className={styles.content}>
+return (  
+    <Box width="100%" height="100%" className={styles.desktop}>
+      <div className={styles.content}>
         <img src="/img/eruwhite.png" />
         <h1>Upload Beats</h1>
-        <DropZone />
+        {/* <DropZone /> */}
+        <Attachment attachments={attachments} setAttachments={setAttachments} />
         <h3>Use mobile for remixing</h3>
         {/* TODO: Copy link to share */}
         {/* <a>Copy</a> */}
       </div>
-    </div>
+    </Box>
   )
 });

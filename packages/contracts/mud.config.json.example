@@ -1,0 +1,17 @@
+{
+  "deployClient": true,
+  "clientUrl": "http://localhost:3000",
+  "reuseComponents": false,
+  "upgradeSystems": false,
+  "chainBlockTime": 1,
+  "chainGasLimit": 100000000,
+  "chainId": 28528,
+  "rpc": "https://alpha-1-replica-0.bedrock-goerli.optimism.io",
+  "wsRpc": "wss://alpha-1-replica-0.bedrock-goerli.optimism.io",
+  "netlifyPersonalToken": "",
+  "netlifySlug": "",
+  "deployerPrivateKey": "",
+  "codespace": null,
+  "dry": null,
+  "world": ""
+}

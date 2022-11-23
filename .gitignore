@@ -2,3 +2,5 @@ node_modules
 .eslintcache
 .DS_STORE
 .env
+mud.config.json
+.netlify

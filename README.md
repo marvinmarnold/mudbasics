@@ -44,3 +44,12 @@ Eru is a music layer to enable devs to create tools, and help melomaniacs and fa
 - RemoveTrackFromSample(sampleEntity, trackEntity)
     - sampleEntity.SampleTracksComponent.remove(trackEntity)
 
+### Deploy contracts
+From the contracts folder run:
+```sh
+yarn mud deploy --deployerPrivateKey <PRIVATE KEY> --deployClient --netlifySlug <SLUG> --netlifyPersonalToken <PERSONAL TOKEN>
+```
+
+### Test serverless functions locally
+
+Run `netlify functions:serve` from the client directory.

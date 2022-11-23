@@ -1,6 +1,6 @@
 import { S3 } from '@aws-sdk/client-s3';
 import axios from 'axios';
-import { EVER_API } from 'src/constants';
+import { EVER_API } from '../constants';
 import { v4 as uuid } from 'uuid';
 
 interface AttachmentType {
@@ -16,8 +16,9 @@ const params = {
 };
 
 const getS3Client = async () => {
-  const token = await axios.get('/api/token');
-  console.log("🚀 ~ file: uploadToIPFS.ts ~ line 15 ~ getS3Client ~ token", token)
+  try {
+  const token = await axios.get('http://localhost:9999/.netlify/functions/token');
+  console.log("🚀 ~ file: uploadToIPFS.ts ~ line 15 ~ getS3Client ~ token", token)  
   const client = new S3({
     endpoint: EVER_API,
     credentials: {
@@ -28,8 +29,12 @@ const getS3Client = async () => {
     region: 'us-west-2',
     maxAttempts: 3
   });
-
-  return client;
+    // toast
+    return client;
+  } catch (error) {
+    // toast
+    console.error(error)
+  }
 };
 
 /**

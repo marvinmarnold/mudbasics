@@ -4,9 +4,9 @@
 // import type { LensterAttachment } from '@generated/lenstertypes';
 // import { Menu, Transition } from '@headlessui/react';
 import { MusicNoteIcon } from '@heroicons/react/outline';
-import type { ChangeEvent, Dispatch, FC } from 'react';
+import type { ChangeEvent, FC } from 'react';
 import { useRef, useState } from 'react';
-import { useToast } from '@chakra-ui/react'
+import { useToast, Box } from '@chakra-ui/react'
 import { v4 as uuid } from 'uuid';
 
 // import { PUBLICATION } from 'src/tracking';
@@ -86,10 +86,21 @@ const Attachment: FC<Props> = ({ attachments, setAttachments }) => {
 
       // Type check
       if (isTypeAllowed(evt.target.files)) {
-        const attachment = await uploadToIPFS(evt.target.files);
-        if (attachment) {
-          setAttachments(attachment);
-          evt.target.value = '';
+        try {
+          const attachment = await uploadToIPFS(evt.target.files);
+          if (attachment) {
+            setAttachments(attachment);
+            evt.target.value = '';
+          }
+        } catch (error) {
+          console.log("🚀 ~ file: Attachment.tsx ~ line 97 ~ handleAttachment ~ error", error)
+          toast({
+            title: 'Error',
+            description: "Error uploading file.",
+            status: 'error',
+            duration: 9000,
+            isClosable: true,
+          })          
         }
       } else {
         toast({
@@ -107,9 +118,10 @@ const Attachment: FC<Props> = ({ attachments, setAttachments }) => {
   };
 
   return (
-    <div>
-
-    <MusicNoteIcon className="w-4 h-4 text-brand" />
+    <div flex-1 >
+    <Box w={200} textAlign="center">
+      <MusicNoteIcon className="w-1 h-1" />
+    </Box>
     <span className="text-sm">Upload audio</span>
     <input
       id={`audio_${id}`}
@@ -120,7 +132,7 @@ const Attachment: FC<Props> = ({ attachments, setAttachments }) => {
       onChange={handleAttachment}
       disabled={attachments.length >= 4}
       />
-      </div>
+    </div>
   );
 };
 
