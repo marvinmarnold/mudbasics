@@ -17,7 +17,7 @@ const params = {
 
 const getS3Client = async () => {
   try {
-  const token = await axios.get('http://localhost:9999/.netlify/functions/token');
+  const token = await axios.get('/.netlify/functions/token');
   console.log("🚀 ~ file: uploadToIPFS.ts ~ line 15 ~ getS3Client ~ token", token)  
   const client = new S3({
     endpoint: EVER_API,

@@ -1,0 +1,16 @@
+{
+  "chainSpec": "chainSpec.json",
+  "deployClient": false,
+  "clientUrl": null,
+  "reuseComponents": false,
+  "upgradeSystems": false,
+  "chainBlockTime": 1,
+  "chainGasLimit": 100000000,
+  "chainId": 28528,
+  "rpc": "https://alpha-1-replica-0.bedrock-goerli.optimism.io",
+  "wsRpc": "wss://alpha-1-replica-0.bedrock-goerli.optimism.io",
+  "netlifySlug": "eru-app",
+  "codespace": null,
+  "dry": null,
+  "world": null
+}

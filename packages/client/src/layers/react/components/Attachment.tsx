@@ -6,7 +6,7 @@
 import { MusicNoteIcon } from '@heroicons/react/outline';
 import type { ChangeEvent, FC } from 'react';
 import { useRef, useState } from 'react';
-import { useToast, Box } from '@chakra-ui/react'
+import { useToast, Flex } from '@chakra-ui/react'
 import { v4 as uuid } from 'uuid';
 
 // import { PUBLICATION } from 'src/tracking';
@@ -25,6 +25,7 @@ interface Props {
 }
 
 const Attachment: FC<Props> = ({ attachments, setAttachments }) => {
+
   const [loading, setLoading] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
   const id = uuid();
@@ -118,11 +119,8 @@ const Attachment: FC<Props> = ({ attachments, setAttachments }) => {
   };
 
   return (
-    <div flex-1 >
-    <Box w={200} textAlign="center">
-      <MusicNoteIcon className="w-1 h-1" />
-    </Box>
-    <span className="text-sm">Upload audio</span>
+    <div>
+    <Flex align="center" justify="center">
     <input
       id={`audio_${id}`}
       type="file"
@@ -132,6 +130,7 @@ const Attachment: FC<Props> = ({ attachments, setAttachments }) => {
       onChange={handleAttachment}
       disabled={attachments.length >= 4}
       />
+    </Flex>
     </div>
   );
 };

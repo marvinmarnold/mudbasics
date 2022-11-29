@@ -53,10 +53,10 @@ return (
     <Box width="100%" height="100%" className={styles.desktop}>
       <div className={styles.content}>
         <img src="/img/eruwhite.png" />
-        <h1>Upload Beats</h1>
+        <Box mt={60} fontSize='2em'>Upload Beats</Box>
         {/* <DropZone /> */}
         <Attachment attachments={attachments} setAttachments={setAttachments} />
-        <h3>Use mobile for remixing</h3>
+        <h5>(Use mobile for remixing)</h5>
         {/* TODO: Copy link to share */}
         {/* <a>Copy</a> */}
       </div>
