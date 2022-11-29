@@ -41,7 +41,7 @@
     "lerna:publish": "lerna publish --no-private --force-publish",
     "foundryup": "curl -L https://foundry.paradigm.xyz | bash && exec \"$SHELL\" && foundryup",
     "start": "run-pty % yarn start:contracts % yarn start:client",
-    "start:client": "wait-on tcp:8545 && yarn workspace ri-client run start",
+    "start:client": "wait-on tcp:8545 && yarn workspace ri-client run start && yarn workspace ri-client run serverless",
     "start:ngrok": "yarn workspace ri-client run ngrok",
     "start:contracts": "yarn workspace contracts run start",
     "link:mud": "for i in node_modules/@latticexyz/*; do yarn link @latticexyz/$(basename $i); done",
