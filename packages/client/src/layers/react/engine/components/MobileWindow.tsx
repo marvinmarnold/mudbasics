@@ -9,7 +9,7 @@ import * as Tone from 'tone'
 import { Midi } from '@tonejs/midi'
 import { map } from "rxjs";
 
-import styles from './styles.module.css'
+import * as styles from './styles.module.css'
 import { sounds } from '../constants'
 import {ListIcon, PlayIcon, PadIcon} from '../../components/Icons';
 

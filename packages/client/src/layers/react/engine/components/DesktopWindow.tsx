@@ -7,7 +7,7 @@ import { Box } from '@chakra-ui/react'
 
 import {uploadFiles} from '../../../../lib/uploadFiles';
 import Attachment from '../../components/Attachment'
-import styles from './stylesDesktop.module.css'
+import * as styles from './stylesDesktop.module.css'
 
 export const DesktopWindow: React.FC = observer(({layers}) => {
   const [attachments, setAttachments] = useState([]);

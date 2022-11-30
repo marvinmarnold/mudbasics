@@ -41,10 +41,10 @@
     "lerna:publish": "lerna publish --no-private --force-publish",
     "foundryup": "curl -L https://foundry.paradigm.xyz | bash && exec \"$SHELL\" && foundryup",
     "start": "run-pty % yarn start:contracts % yarn start:client",
-    "start:client": "wait-on tcp:8545 && yarn workspace ri-client run start",
+    "start:client": "wait-on tcp:8545 && yarn ri-client run start",
     "build": "yarn workspace ri-client build",
     "start:ngrok": "yarn workspace ri-client run ngrok",
-    "start:contracts": "yarn workspace contracts run start",
+    "start:contracts": "yarn contracts run start",
     "link:mud": "for i in node_modules/@latticexyz/*; do yarn link @latticexyz/$(basename $i); done",
     "unlink:mud": "for i in node_modules/@latticexyz/*; do yarn unlink @latticexyz/$(basename $i); done && yarn install --force"
   },
@@ -52,5 +52,5 @@
     "*.ts": "eslint --cache --fix",
     "*.{ts,css,md,sol}": "prettier --write"
   },
-  "packageManager": "yarn@3.2.4"
+  "packageManager": "yarn@1.22.19"
 }
