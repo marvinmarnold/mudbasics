@@ -32,7 +32,7 @@
     }
   },
   "scripts": {
-    "prepare": "husky install && yarn lerna run prepare",
+    "prepare": "yarn lerna run prepare",
     "commit": "cz",
     "prettier:check": "prettier --check 'src/**/*.ts'",
     "prettier": "prettier --write 'packages/**/*.ts'",
